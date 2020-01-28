@@ -18,15 +18,46 @@ export default {
 
 <style lang="scss">
 
-$defaultColor: #2c3e50;
+document {
+	padding: 0;
+	margin: 0;
+}
 
-#app {
-	// font-family: 'Avenir', Helvetica, Arial, sans-serif;
-	font-family: 'Nunito Sans', sans-serif;
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+
+	padding: 0;
+	margin: 0;
+
+	font-family: 'Nunito Sans', Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
-	color: $defaultColor;
+
+	color: #2c3e50;
+}
+
+#app {
+	flex: 1 1 auto;
+
+	display: flex;
+	flex-direction: row;
+
+	background-color: #FCFCFC;
+
+	width: 100vw;
+	height: 100vh;
+
+	> div {
+		&:first-child {
+			flex: 0 0 20rem;
+		}
+		&:last-child {
+			flex: 1 1 auto;
+		}
+	}
 }
 
 </style>
