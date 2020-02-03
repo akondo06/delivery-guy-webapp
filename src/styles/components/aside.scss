@@ -81,11 +81,11 @@ aside.aside {
 				border-left: 0;
 				background-color: rgba($base-color, .5);
 				padding-left: 0;
-				margin: 0 0 $default-padding * .5;
+				margin: 0 0 $block-spacing * .5;
 
 				li {
 					a {
-						padding: $default-padding * .5 0 $default-padding * .5 $default-padding * .5;
+						padding: $block-spacing * .5 0 $block-spacing * .5 $block-spacing * .5;
 						font-size: $aside-submenu-font-size;
 
 						&.has-icon {
@@ -103,7 +103,7 @@ aside.aside {
 	}
 
 	.menu-label {
-		padding: 0 $default-padding * .5;
+		padding: 0 $block-spacing * .5;
 
 		&:first-of-type {
 			margin-top: 0;

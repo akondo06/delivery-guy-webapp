@@ -7,7 +7,7 @@ $family-sans-serif: 'Nunito Sans', Helvetica, Arial, sans-serif;
 
 /* Base: Size  */
 $size-base: 1rem;
-$default-padding: $size-base * 1.5;
+// $default-padding: $block-spacing;
 
 /* Base: Color */
 $base-color: #EFEFF3;
@@ -45,11 +45,9 @@ $aside-box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.16);
 $aside-background-color: $base-color;
 
 /* Card */
-$card-shadow: none;
-$card-header-shadow: none;
-
-/* Card: specifics */
-$card-header-border-bottom-color: $base-color-light;
+// $card-shadow: none;
+// $card-header-shadow: none;
+// $card-header-border-bottom-color: $base-color-light;
 
 /* Table */
 $table-cell-border: 1px solid $white-bis;
@@ -66,18 +64,18 @@ $modal-card-width: 40vw;
 $modal-card-width-mobile: 90vw;
 
 /* Notification */
-$notification-radius: $radius-small;
-$notification-padding: $default-padding * .75 $default-padding;
+// $notification-radius: $radius-small;
+// $notification-padding: $default-padding * .75 $default-padding;
 
 /* Footer */
-$footer-background-color: $white;
-$footer-padding: $default-padding * .33 $default-padding;
+// $footer-background-color: $white;
+// $footer-padding: $default-padding * .33 $default-padding;
 
 /* Footer: specifics */
-$footer-logo-height: $size-base * 2;
+// $footer-logo-height: $size-base * 2;
 
 /* Progress */
-$progress-bar-background-color: $white-ter;
+// $progress-bar-background-color: $white-ter;
 
 
 @import '~bulma';

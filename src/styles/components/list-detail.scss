@@ -23,6 +23,10 @@
 	}
 	.detail {
 		flex: 1 1 auto;
+
+		.inner {
+			padding: $block-spacing;
+		}
 	}
 
 	.filter {
