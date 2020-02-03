@@ -3,14 +3,14 @@ module.exports = {
 	env: {
 		node: true
 	},
-	'extends': [
+	extends: [
 		'plugin:vue/essential',
 		'@vue/standard'
 	],
 	rules: {
 		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-		'no-tabs': ['error', { allowIndentationTabs: true }],
+		'no-tabs': 'off',
 		'indent': ['error', 'tab'],
 		'semi': ['error', 'always'],
 
@@ -32,8 +32,7 @@ module.exports = {
 
 		'no-duplicate-imports': ['error', { includeExports: true }],
 		'no-useless-computed-key': 'error',
-		'no-useless-constructor': 'error',
-
+		'no-useless-constructor': 'error'
 	},
 	parserOptions: {
 		parser: 'babel-eslint'

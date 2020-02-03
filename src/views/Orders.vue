@@ -1,5 +1,14 @@
 <template>
-	<div class="orders">
-		<h1>Orders Here ...</h1>
-	</div>
+	<ListDetail class="orders" />
 </template>
+
+<script>
+import ListDetail from '@/components/ListDetail.vue';
+
+export default {
+	name: 'orders',
+	components: {
+		ListDetail
+	}
+};
+</script>

@@ -1,63 +1,83 @@
 <template>
 	<div id="app">
-		<MainMenu />
+		<aside-menu :menu="menu" />
 		<router-view />
 	</div>
 </template>
 
 <script>
-import MainMenu from '@/components/MainMenu.vue';
+import AsideMenu from '@/components/AsideMenu';
 
 export default {
 	name: 'App',
 	components: {
-		MainMenu
+		AsideMenu
+	},
+	computed: {
+		menu() {
+			return [
+				{
+					to: '/',
+					icon: 'desktop-mac',
+					label: 'Dashboard',
+					exact: true
+				},
+				{
+					to: '/orders',
+					label: 'Orders',
+					icon: 'table',
+					updateMark: true
+				},
+				{
+					to: '/routes',
+					label: 'Routes',
+					icon: 'square-edit-outline'
+				},
+				{
+					to: '/settings',
+					label: 'Settings',
+					icon: 'settings'
+				}
+				// {
+				// 	to: '/profile',
+				// 	label: 'Profile',
+				// 	icon: 'account-circle'
+				// },
+				// {
+				// 	href: 'https://justboil.me/bulma-admin-template/two',
+				// 	label: 'About',
+				// 	icon: 'help-circle'
+				// },
+				// {
+				// 	label: 'Submenus',
+				// 	subLabel: 'Submenus Example',
+				// 	icon: 'view-list',
+				// 	menu: [
+				// 		{
+				// 			href: '#void',
+				// 			label: 'Sub-item One'
+				// 		},
+				// 		{
+				// 			href: '#void',
+				// 			label: 'Sub-item Two'
+				// 		}
+				// 	]
+				// }
+			];
+		}
+	},
+	created() {
+		this.$store.commit('user', {
+			name: 'John Doe',
+			email: 'john@example.com',
+			avatar: 'avatars/akondo.jpg'
+		});
+
+		this.$store.commit('orders', new Array(300));
 	}
 };
 </script>
 
 <style lang="scss">
-
-document {
-	padding: 0;
-	margin: 0;
-}
-
-body {
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
-
-	padding: 0;
-	margin: 0;
-
-	font-family: 'Nunito Sans', Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-
-	color: #2c3e50;
-}
-
-#app {
-	flex: 1 1 auto;
-
-	display: flex;
-	flex-direction: row;
-
-	background-color: #FCFCFC;
-
-	width: 100vw;
-	height: 100vh;
-
-	> div {
-		&:first-child {
-			flex: 0 0 20rem;
-		}
-		&:last-child {
-			flex: 1 1 auto;
-		}
-	}
-}
-
+	@import 'styles/app.scss';
 </style>
