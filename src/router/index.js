@@ -1,35 +1,80 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Home from '../views/Home.vue';
+import SignIn from '../views/SignIn.vue';
+import SignUp from '../views/SignUp.vue';
+import TroubleSigningIn from '../views/TroubleSigningIn.vue';
+import Auth from '../views/Auth.vue';
 
 Vue.use(VueRouter);
 
 // route level code-splitting
-// this generates a separate chunk (orders.[hash].js) for this route
+// this generates a separate chunk (vehicles.[hash].js) for this route
 // which is lazy-loaded when the route is visited.
-// component: () => import(/* webpackChunkName: "orders" */ '../views/Orders.vue')
+// component: () => import(/* webpackChunkName: "vehicles" */ '../views/Vehicles.vue')
 
 const routes = [
 	{
 		path: '/',
-		name: 'home',
-		component: Home
+		name: 'auth',
+		redirect: {
+			name: 'vehicles'
+		},
+		meta: {
+			requiresAuth: true
+		},
+		component: Auth,
+		children: [
+			{
+				path: '/vehicles',
+				name: 'vehicles',
+				component: () => import(/* webpackChunkName: "vehicles" */ '../views/auth/Vehicles.vue'),
+				children: [
+					{
+						path: 'create',
+						name: 'vehicles.create',
+						component: () => import(/* webpackChunkName: "vehiclesCreate" */ '../views/auth/vehicles/Create.vue')
+					},
+					{
+						path: ':id',
+						name: 'vehicles.detail',
+						component: () => import(/* webpackChunkName: "vehiclesDetail" */ '../views/auth/vehicles/Detail.vue')
+					}
+				]
+			},
+			{
+				path: '/account',
+				name: 'account',
+				component: () => import(/* webpackChunkName: "account" */ '../views/auth/Account.vue'),
+				children: [
+					{
+						path: 'change_details',
+						name: 'account.change_details',
+						component: () => import(/* webpackChunkName: "accountChangeDetails" */ '../views/auth/account/ChangeDetails.vue')
+					},
+					{
+						path: 'change_password',
+						name: 'account.change_password',
+						component: () => import(/* webpackChunkName: "accountChangePassword" */ '../views/auth/account/ChangePassword.vue')
+					}
+				]
+			}
+		]
 	},
 	{
-		path: '/orders',
-		name: 'orders',
-		component: () => import(/* webpackChunkName: "orders" */ '../views/Orders.vue')
+		path: '/sign-in',
+		name: 'signin',
+		component: SignIn
 	},
 	{
-		path: '/routes',
-		name: 'routes',
-		component: () => import(/* webpackChunkName: "routes" */ '../views/Routes.vue')
+		path: '/sign-up',
+		name: 'signup',
+		component: SignUp
 	},
 	{
-		path: '/settings',
-		name: 'settings',
-		component: () => import(/* webpackChunkName: "settings" */ '../views/Settings.vue')
+		path: '/trouble-signing-in',
+		name: 'trouble-signing-in',
+		component: TroubleSigningIn
 	}
 ];
 

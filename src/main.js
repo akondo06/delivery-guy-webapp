@@ -7,23 +7,38 @@ import router from './router';
 import store from './store';
 
 import './directives/focus';
+import './directives/window-scroll';
 
 import './registerServiceWorker';
 
-import AsideMenuList from '@/components/AsideMenuList';
-
-router.afterEach(() => {
-	store.commit('asideMobileStateToggle', false);
-});
-
 Vue.config.productionTip = false;
-
-Vue.component('AsideMenuList', AsideMenuList);
 
 Vue.use(Buefy);
 
-new Vue({
-	router,
-	store,
-	render: (h) => h(App)
-}).$mount('#app');
+router.beforeEach((to, from, next) => {
+	const isLoggedIn = store.getters.isLoggedIn;
+	if(to.matched.some((record) => record.meta.requiresAuth)) {
+		if(!isLoggedIn) {
+			next({
+				name: 'signin',
+				query: { redirect: to.fullPath }
+			});
+		} else {
+			next();
+		}
+	} else if((to.name === 'signin') && isLoggedIn) {
+		next({ name: 'auth' });
+	} else {
+		next();
+	}
+});
+
+store.dispatch('bootUp').then(() => {
+	document.querySelector('html').classList.remove('is-starting-up');
+
+	new Vue({
+		router,
+		store,
+		render: (h) => h(App)
+	}).$mount('#app');
+});

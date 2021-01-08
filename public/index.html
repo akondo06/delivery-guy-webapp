@@ -1,13 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" class="has-aside-left has-aside-mobile-transition has-aside-expanded">
+<html lang="en" class="is-starting-up">
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 		<link rel="icon" href="<%= BASE_URL %>favicon.ico" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700&display=swap" />
-		<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJj5jEHsN-yMRMBUQwQdKu_U1PYZ_rVZQ&libraries=places" async defer></script>
+		
 		<title>delivery-guy-thing</title>
+		<style>
+			.is-starting-up {
+				overflow-y: auto;
+			}
+			.is-starting-up #app {
+				display: none;
+			}
+			.is-starting-up body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				padding: 0;
+				margin: 0;
+
+				width: 100vw;
+				height: 100vh;
+			}
+
+			.is-starting-up body:before {
+				animation: spinAround 500ms infinite linear;
+				content: "";
+				display: block;
+				position: relative;
+				border: 0.1rem solid hsl(0, 0%, 86%);
+				border-radius: 290486px;
+				border-right-color: transparent;
+				border-top-color: transparent;
+				width: 2rem;
+				height: 2rem;
+			}
+
+			@keyframes spinAround {
+				from {
+					transform: rotate(0deg)
+				}
+				to {
+					transform: rotate(359deg)
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<noscript>
@@ -17,3 +59,7 @@
 		<!-- built files will be auto injected -->
 	</body>
 </html>
+
+
+
+
