@@ -30,6 +30,15 @@
 								</h1>
 							</div>
 							<div class="media-right">
+								<b-tooltip type="is-dark" label="Edit">
+									<router-link
+										:to="{ name: 'vehicles.edit', params: { id: vehicle.id } }"
+									>
+										<span class="icon">
+											<PencilIcon />
+										</span>
+									</router-link>
+								</b-tooltip>
 								<VehicleDelete :vehicle="vehicle" />
 							</div>
 						</div>
@@ -68,18 +77,23 @@
 <script>
 import VehicleDelete from '@/components/VehicleDelete.vue';
 import PlusIcon from '@/components/icons/Plus.vue';
+import PencilIcon from '@/components/icons/Pencil.vue';
 import TruckIcon from '@/components/icons/Truck.vue';
 
 export default {
 	components: {
 		VehicleDelete,
 		TruckIcon,
+		PencilIcon,
 		PlusIcon
 	},
 
 	computed: {
 		vehicleCreate() {
 			return this.$store.state.vehicleCreate.data;
+		},
+		vehicleUpdate() {
+			return this.$store.state.vehicleUpdate.data;
 		},
 		vehicleDelete() {
 			return this.$store.state.vehicleDelete.data;
@@ -99,10 +113,13 @@ export default {
 	},
 
 	watch: {
-		vehicleDelete() {
+		vehicleCreate() {
 			this.doLoad();
 		},
-		vehicleCreate() {
+		vehicleUpdate() {
+			this.doLoad();
+		},
+		vehicleDelete() {
 			this.doLoad();
 		}
 	},

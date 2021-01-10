@@ -287,6 +287,9 @@ export default new Vuex.Store({
 				// throw error;
 			}
 		},
+		async clearVehicleUpdate({ commit, state }) {
+			commit(types.VEHICLE_UPDATE, { inProgress: false, payload: undefined, data: undefined, error: undefined });
+		},
 		async vehicleDelete({ commit, state }, payload) {
 			if(state.vehicleDelete.inProgress) {
 				return;
