@@ -1,9 +1,9 @@
 <template>
 	<section class="vehicles">
 		<div class="container-awesome">
-			<h1 class="title">
+			<!-- <h1 class="title">
 				Vehicles
-			</h1>
+			</h1> -->
 
 			<div v-if="isLoading && !data">
 				<div class="loader is-large"></div>
@@ -17,24 +17,36 @@
 					v-for="vehicle in data"
 					:key="vehicle.id"
 				>
-					<div class="box">
-						<div class="media">
-							<div class="media-left">
-								<span class="icon is-medium">
+					<div class="vehicle-card">
+						<div class="vehicle-content">
+							<div class="vehicle-info">
+								<div class="icon is-medium">
 									<TruckIcon />
-								</span>
-							</div>
-							<div class="media-content">
+								</div>
 								<h1 class="title is-4">
 									{{vehicle.name}}
 								</h1>
+								<div v-if="vehicle.broadcast">
+									<router-link
+										:to="{ name: 'vehicles.detail', params: { id: vehicle.id } }"
+									>
+										<span>
+											LIVE: {{vehicle.broadcast.createdBy.firstName}} {{vehicle.broadcast.createdBy.lastName}}
+										</span>
+									</router-link>
+								</div>
+								<div v-else>
+									<span>
+										Not broadcasting.
+									</span>
+								</div>
 							</div>
-							<div class="media-right">
+							<div class="vehicle-actions">
 								<b-tooltip type="is-dark" label="Edit">
 									<router-link
 										:to="{ name: 'vehicles.edit', params: { id: vehicle.id } }"
 									>
-										<span class="icon">
+										<span class="icon is-medium">
 											<PencilIcon />
 										</span>
 									</router-link>
@@ -42,29 +54,17 @@
 								<VehicleDelete :vehicle="vehicle" />
 							</div>
 						</div>
-						<div v-if="vehicle.broadcast">
-							<router-link
-								:to="{ name: 'vehicles.detail', params: { id: vehicle.id } }"
-							>
-								<span>
-									LIVE: {{vehicle.broadcast.createdBy.firstName}} {{vehicle.broadcast.createdBy.lastName}}
-								</span>
-							</router-link>
-						</div>
-						<div v-else>
-							<span>
-								Not broadcasting.
-							</span>
-						</div>
 					</div>
 				</div>
 				<div class="column is-full-mobile is-half-tablet is-one-third-widescreen">
 					<router-link
-						class="box"
+						class="vehicle-card is-add"
 						:to="{ name: 'vehicles.create' }"
 					>
-						<span class="icon is-large">
-							<PlusIcon />
+						<span class="vehicle-content">
+							<span class="icon is-large">
+								<PlusIcon />
+							</span>
 						</span>
 					</router-link>
 				</div>

@@ -29,7 +29,13 @@ body {
 	width: 100%;
 	height: 100%;
 
-	padding-top: 6.875rem;
+	padding-top: $gap;
+	padding-bottom: 7.875rem;
+
+	@include tablet() {
+		padding-top: 6.875rem;
+		padding-bottom: $gap;
+	}
 }
 
 #main {

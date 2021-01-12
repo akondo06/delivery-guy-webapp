@@ -21,6 +21,7 @@
 						:errors="errors"
 					>
 						<b-input
+							ref="nameInput"
 							type="name"
 							v-model="name"
 							placeholder="Name"
@@ -140,6 +141,14 @@ export default {
 		},
 		initForm() {
 			this.name = this.data.name || '';
+
+			const nameInput = this.$refs.nameInput;
+
+			nameInput.focus();
+
+			this.$nextTick(() => {
+				nameInput.$el.selectionStart = nameInput.$el.selectionEnd = 10000;
+			});
 		},
 		doSubmit(event) {
 			if(this.isLoading || this.isLoadingUpdate) {

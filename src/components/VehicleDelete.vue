@@ -2,7 +2,7 @@
 	<div>
 		<b-tooltip type="is-dark" label="Delete Vehicle">
 			<a href="#" @click.prevent="confirm">
-				<span class="icon has-text-danger">
+				<span class="icon is-medium has-text-danger">
 					<TrashIcon />
 				</span>
 			</a>
