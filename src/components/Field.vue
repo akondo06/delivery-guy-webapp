@@ -16,13 +16,26 @@ export default {
 			type: String
 		},
 		errors: {
-			type: Object
+			type: [Object, Error]
 		}
 	},
 
 	computed: {
 		message() {
-			return this.errors && Array.isArray(this.errors[this.name]) && this.errors[this.name][0];
+			let errors = this.errors;
+			if(errors && errors instanceof Error && errors.response) {
+				errors = errors.response.data;
+			}
+
+			if(!errors) {
+				return;
+			}
+
+			if(!Array.isArray(errors[this.name])) {
+				return;
+			}
+
+			return errors[this.name][0];
 		},
 		type() {
 			return this.message ? 'is-danger' : undefined;

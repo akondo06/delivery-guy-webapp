@@ -44,13 +44,13 @@
 						/>
 					</field>
 					<field
-						name="companyName"
+						name="organizationName"
 						:errors="errors"
 					>
 						<b-input
-							type="companyName"
-							v-model="companyName"
-							placeholder="Company Name"
+							type="organizationName"
+							v-model="organizationName"
+							placeholder="Organization Name"
 							required
 							size="is-medium"
 							:disabled="isLoading"
@@ -93,7 +93,7 @@ export default {
 			isVisible: true,
 			firstName: '',
 			lastName: '',
-			companyName: ''
+			organizationName: ''
 		};
 	},
 
@@ -141,7 +141,7 @@ export default {
 			}
 			this.firstName = this.account.firstName || '';
 			this.lastName = this.account.lastName || '';
-			this.companyName = this.account.company.name || '';
+			this.organizationName = this.account.organization.name || '';
 		},
 		doSubmit(event) {
 			if(this.isLoading) {
@@ -151,15 +151,15 @@ export default {
 			const {
 				firstName,
 				lastName,
-				companyName
+				organizationName
 			} = this;
 
 			this.$store.dispatch('accountUpdate', {
 				id: this.account.id,
 				firstName,
 				lastName,
-				company: {
-					name: companyName
+				organization: {
+					name: organizationName
 				}
 			});
 		}

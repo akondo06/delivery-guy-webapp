@@ -22,7 +22,7 @@
 
 	height: 5.3125rem;
 
-	.company {
+	.organization {
 		display: none;
 		flex-direction: row;
 		align-items: center;
@@ -102,7 +102,7 @@
 		background-color: $body-background-color;
 		box-shadow: none;
 
-		.company {
+		.organization {
 			display: flex;
 		}
 

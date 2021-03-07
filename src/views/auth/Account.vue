@@ -9,61 +9,56 @@
 				<div>{{error.message}}</div>
 			</div>
 
-			<section>
-				<div class="box">
-					<h2 class="title">
-						{{data.firstName}} {{data.lastName}}
-					</h2>
-					<p class="subtitle">
-						{{data.company.name}} <br />
-						{{data.email}}
-					</p>
-				</div>
-			</section>
+			<div class="box">
+				<h2 class="title">
+					{{data.firstName}} {{data.lastName}}
+				</h2>
+				<p class="subtitle">
+					{{data.organization.name}} <br />
+					{{data.email}}
+				</p>
+			</div>
 
-			<section>
-				<h2 class="title">Actions</h2>
-				<div class="box">
-					<ul>
-						<li>
-							<router-link
-								:to="{ name: 'account.change_details' }"
-							>
-								<span class="icon">
-									<UserIcon />
-								</span>
-								<span>Change Details</span>
-							</router-link>
-						</li>
-						<li>
-							<router-link
-								:to="{ name: 'account.change_password' }"
-							>
-								<span class="icon">
-									<LockIcon />
-								</span>
-								<span>Change Password</span>
-							</router-link>
-						</li>
-						<li>
-							<a href="#" @click.prevent="doDelete">
-								<span class="icon">
-									<TrashIcon />
-								</span>
-								<span>Delete Account</span>
-							</a>
-						</li>
-						<li>
-							<a href="#" @click.prevent="doSignOut">
-								<span class="icon">
-									<LogoutIcon />
-								</span>
-								<span>Sign Out</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</section>
+			<div class="box">
+				<ul>
+					<li>
+						<router-link
+							:to="{ name: 'account.change_details' }"
+						>
+							<span class="icon">
+								<UserIcon />
+							</span>
+							<span>Change Details</span>
+						</router-link>
+					</li>
+					<li>
+						<router-link
+							:to="{ name: 'account.change_password' }"
+						>
+							<span class="icon">
+								<LockIcon />
+							</span>
+							<span>Change Password</span>
+						</router-link>
+					</li>
+					<li>
+						<a href="#" @click.prevent="doDelete">
+							<span class="icon">
+								<TrashIcon />
+							</span>
+							<span>Delete Account</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" @click.prevent="doSignOut">
+							<span class="icon">
+								<LogoutIcon />
+							</span>
+							<span>Sign Out</span>
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 		<router-view />
 	</div>

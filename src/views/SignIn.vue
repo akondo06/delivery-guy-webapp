@@ -50,7 +50,7 @@
 					Sign In
 				</b-button>
 			</form>
-			<br>
+			<br />
 			<nav class="level">
 				<div class="level-item has-text-centered">
 					<div>

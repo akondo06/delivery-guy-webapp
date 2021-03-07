@@ -15,7 +15,7 @@ export default new Vuex.Store({
 		isBootingUp: true,
 		session: {
 			token: undefined,
-			userId: undefined
+			accountId: undefined
 		},
 		signIn: {
 			inProgress: false,
@@ -97,15 +97,15 @@ export default new Vuex.Store({
 		}
 	},
 	getters: {
-		isLoggedIn: (state) => state.session.token && state.session.userId
+		isLoggedIn: (state) => state.session.token && state.session.accountId
 	},
 	mutations: {
-		[types.SESSION_SET](state, { token, userId }) {
+		[types.SESSION_SET](state, { token, accountId }) {
 			state.isBootingUp = false;
 
 			state.session = {
 				token: token && token.length ? token : undefined,
-				userId: userId && userId.length ? userId : undefined
+				accountId: accountId && accountId.length ? accountId : undefined
 			};
 		},
 		[types.SIGN_IN](state, payload) {
@@ -154,10 +154,10 @@ export default new Vuex.Store({
 
 			const [
 				token,
-				userId
+				accountId
 			] = (current || '').split('/akd/');
 
-			commit(types.SESSION_SET, { token, userId });
+			commit(types.SESSION_SET, { token, accountId });
 
 			api.setUserToken(token);
 
@@ -165,7 +165,7 @@ export default new Vuex.Store({
 				return;
 			}
 
-			await dispatch('account', { id: userId });
+			await dispatch('account', { id: accountId });
 		},
 		async signIn({ commit, state, dispatch }, payload) {
 			if(state.signIn.inProgress) {
@@ -177,7 +177,7 @@ export default new Vuex.Store({
 				const response = await api.request('sign_in', payload);
 				commit(types.SIGN_IN, { inProgress: false, payload: undefined });
 
-				window.localStorage.setItem('deliveryguy_session', `${response.data.token}/akd/${response.data.userId}`);
+				window.localStorage.setItem('deliveryguy_session', `${response.data.token}/akd/${response.data.accountId}`);
 
 				await dispatch('bootUp');
 
@@ -197,7 +197,7 @@ export default new Vuex.Store({
 
 			router.push({ name: 'signin' });
 		},
-		async signUp({ commit, state }, payload) {
+		async signUp({ commit, state, dispatch }, payload) {
 			if(state.signUp.inProgress) {
 				return;
 			}
@@ -206,6 +206,12 @@ export default new Vuex.Store({
 				commit(types.SIGN_UP, { inProgress: true, payload, error: undefined });
 				const response = await api.request('sign_up', payload);
 				commit(types.SIGN_UP, { inProgress: false, data: response.data });
+
+				window.localStorage.setItem('deliveryguy_session', `${response.data.token}/akd/${response.data.accountId}`);
+
+				await dispatch('bootUp');
+
+				router.push({ name: 'auth' });
 			} catch(error) {
 				commit(types.SIGN_UP, { inProgress: false, error });
 				// throw error;
@@ -304,7 +310,7 @@ export default new Vuex.Store({
 				// throw error;
 			}
 		},
-		async account({ commit, state }, payload) {
+		async account({ commit, state, dispatch }, payload) {
 			if(state.account.inProgress) {
 				return;
 			}

@@ -1,11 +1,11 @@
 <template>
 	<div :class="{ 'main-menu': true, 'with-cover': withCover }" v-window-scroll="handleScroll">
-		<div class="company">
-			<div class="logo" v-if="company.logoUrl">
-				<img :src="company.logoUrl" alt="" />
+		<div class="organization">
+			<div class="logo" v-if="organization.logoUrl">
+				<img :src="organization.logoUrl" alt="" />
 			</div>
 			<div class="name">
-				{{company.name}}
+				{{organization.name}}
 			</div>
 		</div>
 		<ul class="nav-items">
@@ -54,8 +54,8 @@ export default {
 		account() {
 			return this.$store.state.account.data;
 		},
-		company() {
-			return this.account && this.account.company;
+		organization() {
+			return this.account && this.account.organization;
 		},
 		items() {
 			return [

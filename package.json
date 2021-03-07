@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "DeliveryGuySDK": "./../delivery-guy-sdk",
+    "DeliveryGuySDK": "git+https://github.com/akondo06/delivery-guy-sdk.git",
     "axios": "^0.21.1",
     "buefy": "^0.8.10",
     "core-js": "^3.4.4",

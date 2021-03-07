@@ -32,7 +32,11 @@
 				</div>
 			</div>
 			<div class="card-image">
-				<figure class="image is-5by3" ref="vehicleMap"></figure>
+				<Map
+					id="vehicle"
+					:position="data && data.broadcast ? data.broadcast.position : undefined"
+					:title="data ? data.name : 'Loading'"
+				/>
 			</div>
 		</div>
 	</b-modal>
@@ -40,11 +44,13 @@
 
 <script>
 import Since from '@/components/Since.vue';
+import Map from '@/components/Map.vue';
 import TruckIcon from '@/components/icons/Truck.vue';
 
 export default {
 	components: {
 		Since,
+		Map,
 		TruckIcon
 	},
 
@@ -101,8 +107,6 @@ export default {
 				return;
 			}
 			this.isVisible = true;
-
-			this.initMap();
 		}
 	},
 
@@ -112,20 +116,6 @@ export default {
 		},
 		load() {
 			this.$store.dispatch('vehicle', { id: this.$route.params.id });
-		},
-		initMap() {
-			const element = this.$refs.vehicleMap;
-
-			if(!element) {
-				return;
-			}
-
-			const pos = this.broadcastPosition;
-
-			return new window.google.maps.Map(element, {
-				zoom: pos ? 10 : 6,
-				center: pos ? { lat: pos.latitude, lng: pos.longitude } : { lat: 45.9442858, lng: 25.0094303 } // RO
-			});
 		}
 	},
 
