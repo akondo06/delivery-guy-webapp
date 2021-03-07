@@ -1,4 +1,4 @@
-# delivery-guy-thing
+# delivery-guy-webapp
 
 ## Project setup
 ```
