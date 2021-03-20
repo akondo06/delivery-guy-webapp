@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import SignIn from '../views/SignIn.vue';
 import SignUp from '../views/SignUp.vue';
 import TroubleSigningIn from '../views/TroubleSigningIn.vue';
+import NotFound from '../views/NotFound.vue';
 import Auth from '../views/Auth.vue';
 
 Vue.use(VueRouter);
@@ -80,6 +81,10 @@ const routes = [
 		path: '/trouble-signing-in',
 		name: 'trouble-signing-in',
 		component: TroubleSigningIn
+	},
+	{
+		path: '/:pathMatch(.*)*',
+		component: NotFound
 	}
 ];
 

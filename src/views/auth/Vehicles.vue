@@ -33,7 +33,7 @@
 											LIVE: {{vehicle.broadcast.createdBy.firstName}} {{vehicle.broadcast.createdBy.lastName}}
 										</span>
 										<span v-else>
-											Not broadcasting.
+											Not broadcasting
 										</span>
 									</router-link>
 							</div>

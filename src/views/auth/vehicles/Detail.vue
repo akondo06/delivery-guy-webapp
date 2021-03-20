@@ -30,7 +30,9 @@
 						<div v-else>
 							<div :class="{ select: true, 'is-loading': broadcastsIsLoading }">
 								<select v-model="selectedBroadcastId">
-									<option v-for="broadcast in broadcastsData" :key="broadcast.id" :value="broadcast.id">{{broadcast.createdAt}}</option>
+									<option v-for="broadcast in broadcastsData" :key="broadcast.id" :value="broadcast.id">
+										{{broadcast.createdAt}} - {{broadcast.createdBy.firstName}} {{broadcast.createdBy.lastName}}
+									</option>
 								</select>
 							</div>
 						</div>
