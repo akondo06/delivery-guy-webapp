@@ -66,7 +66,7 @@ store.dispatch('bootUp').then(() => {
 // });
 
 api.addResponseInterceptor((response) => response, (error) => {
-	if(error.response && error.response.status === 401) {
+	if(error.response && error.response.status === 401 && error.response.config && error.response.config.url !== 'sign_out') {
 		store.dispatch('signOut');
 	}
 	return Promise.reject(error);

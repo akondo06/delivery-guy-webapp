@@ -91,7 +91,7 @@
 					<b-input
 						type="organizationName"
 						v-model="organizationName"
-						placeholder="First name"
+						placeholder="Organization Name"
 						required
 						size="is-medium"
 						autocomplete="organization"

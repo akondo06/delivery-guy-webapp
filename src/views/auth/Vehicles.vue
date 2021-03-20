@@ -26,20 +26,16 @@
 								<h1 class="title is-4">
 									{{vehicle.name}}
 								</h1>
-								<div v-if="vehicle.broadcast">
 									<router-link
 										:to="{ name: 'vehicles.detail', params: { id: vehicle.id } }"
 									>
-										<span>
+										<span v-if="vehicle.broadcast">
 											LIVE: {{vehicle.broadcast.createdBy.firstName}} {{vehicle.broadcast.createdBy.lastName}}
 										</span>
+										<span v-else>
+											Not broadcasting.
+										</span>
 									</router-link>
-								</div>
-								<div v-else>
-									<span>
-										Not broadcasting.
-									</span>
-								</div>
 							</div>
 							<div class="vehicle-actions">
 								<b-tooltip type="is-dark" label="Edit">

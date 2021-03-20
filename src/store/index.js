@@ -47,6 +47,12 @@ export default new Vuex.Store({
 			data: undefined,
 			error: undefined
 		},
+		vehicleBroadcastList: {
+			inProgress: false,
+			payload: undefined,
+			data: undefined,
+			error: undefined
+		},
 		vehicleCreate: {
 			inProgress: false,
 			payload: undefined,
@@ -119,6 +125,9 @@ export default new Vuex.Store({
 		},
 		[types.VEHICLE_LIST](state, payload) {
 			state.vehicleList = { ...state.vehicleList, ...payload };
+		},
+		[types.VEHICLE_BROADCAST_LIST](state, payload) {
+			state.vehicleBroadcastList = { ...state.vehicleBroadcastList, ...payload };
 		},
 		[types.VEHICLE](state, payload) {
 			state.vehicle = { ...state.vehicle, ...payload };
@@ -261,6 +270,23 @@ export default new Vuex.Store({
 		},
 		async clearVehicle({ commit, state }) {
 			commit(types.VEHICLE, { inProgress: false, payload: undefined, data: undefined, error: undefined });
+		},
+		async vehicleBroadcastList({ commit, state }, payload) {
+			if(state.vehicleBroadcastList.inProgress) {
+				return;
+			}
+
+			try {
+				commit(types.VEHICLE_BROADCAST_LIST, { inProgress: true, payload, error: undefined });
+				const response = await api.request('broadcasts', payload);
+				commit(types.VEHICLE_BROADCAST_LIST, { inProgress: false, data: response.data });
+			} catch(error) {
+				commit(types.VEHICLE_BROADCAST_LIST, { inProgress: false, error });
+				// throw error;
+			}
+		},
+		async clearVehicleBroadcastList({ commit, state }) {
+			commit(types.VEHICLE_BROADCAST_LIST, { inProgress: false, payload: undefined, data: undefined, error: undefined });
 		},
 		async vehicleCreate({ commit, state }, payload) {
 			if(state.vehicleCreate.inProgress) {

@@ -20,44 +20,68 @@
 			</div>
 
 			<div class="box">
-				<ul>
-					<li>
-						<router-link
-							:to="{ name: 'account.change_details' }"
-						>
-							<span class="icon">
+				<router-link
+					class="level is-mobile"
+					:to="{ name: 'account.change_details' }"
+				>
+					<span class="level-left">
+						<span class="level-item">
+							<span class="icon is-medium">
 								<UserIcon />
 							</span>
+						</span>
+						<span class="level-item">
 							<span>Change Details</span>
-						</router-link>
-					</li>
-					<li>
-						<router-link
-							:to="{ name: 'account.change_password' }"
-						>
-							<span class="icon">
+						</span>
+					</span>
+				</router-link>
+				<router-link
+					:to="{ name: 'account.change_password' }"
+					class="level is-mobile"
+				>
+					<span class="level-left">
+						<span class="level-item">
+							<span class="icon is-medium">
 								<LockIcon />
 							</span>
+						</span>
+						<span class="level-item">
 							<span>Change Password</span>
-						</router-link>
-					</li>
-					<li>
-						<a href="#" @click.prevent="doDelete">
-							<span class="icon">
+						</span>
+					</span>
+				</router-link>
+				<a
+					class="level is-mobile"
+					href="#"
+					@click.prevent="doDelete"
+				>
+					<span class="level-left">
+						<span class="level-item">
+							<span class="icon is-medium">
 								<TrashIcon />
 							</span>
+						</span>
+						<span class="level-item">
 							<span>Delete Account</span>
-						</a>
-					</li>
-					<li>
-						<a href="#" @click.prevent="doSignOut">
-							<span class="icon">
+						</span>
+					</span>
+				</a>
+				<a
+					class="level is-mobile"
+					href="#"
+					@click.prevent="doSignOut"
+				>
+					<span class="level-left">
+						<span class="level-item">
+							<span class="icon is-medium">
 								<LogoutIcon />
 							</span>
+						</span>
+						<span class="level-item">
 							<span>Sign Out</span>
-						</a>
-					</li>
-				</ul>
+						</span>
+					</span>
+				</a>
 			</div>
 		</div>
 		<router-view />

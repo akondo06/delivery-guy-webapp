@@ -1,10 +1,10 @@
 <template>
 	<div :class="{ 'main-menu': true, 'with-cover': withCover }" v-window-scroll="handleScroll">
 		<div class="organization">
-			<div class="logo" v-if="organization.logoUrl">
+			<div class="logo" v-if="organization && organization.logoUrl">
 				<img :src="organization.logoUrl" alt="" />
 			</div>
-			<div class="name">
+			<div class="name" v-if="organization && organization.name">
 				{{organization.name}}
 			</div>
 		</div>

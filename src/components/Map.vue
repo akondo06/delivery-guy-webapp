@@ -14,8 +14,8 @@ export default {
 		id: {
 			type: String
 		},
-		position: {
-			type: Object
+		positions: {
+			type: Array
 		},
 		title: {
 			type: String
@@ -29,7 +29,7 @@ export default {
 	},
 
 	methods: {
-		setPosition(pos) {
+		setPositions(positions) {
 			if(!this.mapInstance) {
 				return;
 			}
@@ -38,16 +38,20 @@ export default {
 
 			MapLib.deleteMarkers(this.id);
 
-			if(!pos) {
+			if(!positions) {
 				map.setCenter(defPosition);
 				map.setZoom(6);
 
 				return;
 			}
 
-			const marker = MapLib.addMarker(this.id, { lat: pos.latitude, lng: pos.longitude }, this.title);
+			let lastMarker;
 
-			map.setCenter(marker.getPosition());
+			positions.forEach((pos) => {
+				lastMarker = MapLib.addMarker(this.id, { lat: pos.latitude, lng: pos.longitude }, this.title);
+			});
+
+			map.setCenter(lastMarker.getPosition());
 			map.setZoom(10);
 		},
 		async loadMap() {
@@ -56,13 +60,13 @@ export default {
 
 			MapLib.attachMapTo(this.id, this.$refs.container);
 
-			this.setPosition(this.position);
+			this.setPositions(this.position);
 		}
 	},
 
 	watch: {
-		position(value) {
-			this.setPosition(value);
+		positions(value) {
+			this.setPositions(value);
 		}
 	},
 

@@ -16,16 +16,30 @@
 					</div>
 					<div class="media-content">
 						<p class="title">{{data.name}}</p>
-						<p class="subtitle is-6" v-if="data.broadcast">
+						<!-- <p class="subtitle is-6" v-if="data.broadcast">
 							{{data.broadcast.createdBy.firstName}} {{data.broadcast.createdBy.lastName}} - <Since :date="data.broadcast.position.time" />
 						</p>
-						<p class="subtitle is-6" v-else>Not Broadcasting</p>
+						<p class="subtitle is-6" v-else>Not Broadcasting</p> -->
+
+						<div v-if="broadcastsErrors">
+							<div>{{broadcastsErrors.message}}</div>
+						</div>
+						<div v-else-if="broadcastsData && !broadcastsData.length">
+							<div>No broadcasts...</div>
+						</div>
+						<div v-else>
+							<div :class="{ select: true, 'is-loading': broadcastsIsLoading }">
+								<select v-model="selectedBroadcastId">
+									<option v-for="broadcast in broadcastsData" :key="broadcast.id" :value="broadcast.id">{{broadcast.createdAt}}</option>
+								</select>
+							</div>
+						</div>
 					</div>
 					<div class="media-right">
-						<div v-if="data.broadcast">
+						<div v-if="selectedBroadcast">
 							<div>
 								<span>Created </span>
-								<Since :date="data.broadcast.createdOn" />
+								<Since :date="selectedBroadcast.createdOn" />
 							</div>
 						</div>
 					</div>
@@ -34,7 +48,7 @@
 			<div class="card-image">
 				<Map
 					id="vehicle"
-					:position="data && data.broadcast ? data.broadcast.position : undefined"
+					:positions="selectedBroadcast ? selectedBroadcast.locations : undefined"
 					:title="data ? data.name : 'Loading'"
 				/>
 			</div>
@@ -56,7 +70,8 @@ export default {
 
 	data() {
 		return {
-			isVisible: true
+			isVisible: true,
+			selectedBroadcastId: null
 		};
 	},
 
@@ -76,14 +91,24 @@ export default {
 		error() {
 			return this.base.error;
 		},
-		broadcastPosition() {
-			if(!this.data || !this.data.broadcast) {
+		selectedBroadcast() {
+			if(!this.selectedBroadcastId || !this.broadcastsData) {
 				return;
 			}
-			if(!this.data.broadcast.position) {
-				return;
-			}
-			return this.data.broadcast.position;
+
+			return this.broadcastsData.find((b) => b.id === this.selectedBroadcastId);
+		},
+		broadcastsBase() {
+			return this.$store.state.vehicleBroadcastList;
+		},
+		broadcastsData() {
+			return this.broadcastsBase.data;
+		},
+		broadcastsIsLoading() {
+			return this.broadcastsBase.inProgress;
+		},
+		broadcastsErrors() {
+			return this.broadcastsBase.error;
 		}
 	},
 
@@ -107,6 +132,12 @@ export default {
 				return;
 			}
 			this.isVisible = true;
+		},
+		broadcastsData(value) {
+			if(!value || !value[0]) {
+				return;
+			}
+			this.selectedBroadcastId = value[0].id;
 		}
 	},
 
@@ -115,7 +146,12 @@ export default {
 			this.isVisible = false;
 		},
 		load() {
-			this.$store.dispatch('vehicle', { id: this.$route.params.id });
+			const id = this.$route.params.id;
+			this.$store.dispatch('vehicle', { id });
+			this.$store.dispatch('clearVehicleBroadcastList');
+			this.$store.dispatch('vehicleBroadcastList', {
+				filter: { vehicleId: id }
+			});
 		}
 	},
 
@@ -125,6 +161,7 @@ export default {
 
 	beforeUnmount() {
 		this.$store.dispatch('clearVehicle');
+		this.$store.dispatch('clearVehicleBroadcastList');
 	}
 };
 </script>
