@@ -1,0 +1,375 @@
+@import "styles/variables";
+@import "styles/mixins";
+
+// origin: https://github.com/wakirin/Litepicker/blob/master/src/scss/main.scss
+// just overrides:
+
+:root {
+  // --litepicker-container-months-color-bg: #fff;
+  // --litepicker-container-months-box-shadow-color: #ddd;
+  // --litepicker-tooltip-color-bg: #fff;
+  // --litepicker-month-header-color: #333;
+  --litepicker-button-prev-month-color: #{$text};
+  --litepicker-button-next-month-color: #{$text};
+  --litepicker-button-prev-month-color-hover: #{$text};
+  --litepicker-button-next-month-color-hover: #{$text};
+  // --litepicker-month-width: calc(var(--litepicker-day-width) * 7); // 7 days
+  --litepicker-month-weekday-color: #{$text};
+  --litepicker-month-week-number-color: #{$text};
+  --litepicker-day-width: 36px;
+  --litepicker-day-color: #{$text};
+  --litepicker-day-color-hover: #{$success};
+  // --litepicker-is-today-color: #f44336;
+  --litepicker-is-in-range-color: #{rgba($success, 0.35)};
+  // --litepicker-is-locked-color: #9e9e9e;
+  // --litepicker-is-start-color: #fff;
+  --litepicker-is-start-color-bg: #{$success};
+  // --litepicker-is-end-color: #fff;
+  --litepicker-is-end-color-bg: #{$success};
+  --litepicker-button-cancel-color: #{$text};
+  // --litepicker-button-cancel-color-bg: #fff;
+  --litepicker-button-apply-color: #{$primary};
+  // --litepicker-button-apply-color-bg: #fff;
+  // --litepicker-button-reset-color: #909090;
+  --litepicker-button-reset-color-hover: #{$success};
+  // --litepicker-highlighted-day-color: #333;
+  // --litepicker-highlighted-day-color-bg: #ffeb3b;
+}
+
+$transition: all 0.2s ease-in-out;
+
+.litepicker {
+  // box-shadow: inset 0px -1px 2px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0px -1px 2px 0px rgba(0, 0, 0, 0.08), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+
+  display: none;
+
+  background-color: $white;
+  margin-top: 0.25rem;
+
+  font-size: 0.875rem;
+  font-family: inherit;
+
+  button {
+    background: none;
+    border: none;
+  }
+
+  .container {
+    &__main {
+      display: flex;
+    }
+    &__months {
+      display: flex;
+      box-sizing: content-box;
+      flex-wrap: wrap;
+      // background-color: var(--litepicker-container-months-color-bg);
+      background: transparent;
+      box-shadow: none;
+      border-radius: 0;
+
+      width: calc(var(--litepicker-month-width) + 10px); // 10px is padding (left 5px, right: 5px)
+
+      &.columns-2 {
+        width: calc((var(--litepicker-month-width) * 2) + 20px);
+      }
+
+      &.columns-3 {
+        width: calc((var(--litepicker-month-width) * 3) + 30px);
+      }
+
+      &.columns-4 {
+        width: calc((var(--litepicker-month-width) * 4) + 40px);
+      }
+
+      &.split-view {
+        .month-item {
+          &-header {
+            .button-previous-month, .button-next-month {
+              visibility: visible;
+            }
+          }
+        }
+      }
+
+      .month-item {
+        padding: 5px;
+        width: var(--litepicker-month-width);
+        box-sizing: content-box;
+
+        &-header {
+          display: flex;
+          align-items: stretch;
+          justify-content: space-between;
+          gap: 0.25rem;
+
+          padding: 0.5rem 0;
+
+          color: var(--litepicker-month-header-color);
+          font-weight: 500;
+          text-align: center;
+
+          div {
+            flex: 1 1 auto;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 0.5rem;
+
+            select {
+              transition: $transition;
+              border-radius: 0.25rem;
+              box-shadow: none;
+              background: rgba(0, 0, 0, 0.04);
+              border: none;
+              padding: 0.25rem;
+              margin: 0;
+
+              font-size: 0.875rem;
+
+              line-height: 1.5;
+
+              &:hover, &:focus, &:active {
+                background-color: rgba(0, 0, 0, 0.07);
+              }
+            }
+
+            .month-item-name {
+              margin-right: 0;
+            }
+            .month-item-year {
+              padding: 0.25rem;
+            }
+          }
+
+          .reset-button {
+            color: var(--litepicker-button-reset-color);
+
+            > svg {
+              fill: none;
+            }
+
+            * {
+              pointer-events: none;
+            }
+
+            &:hover {
+              color: var(--litepicker-button-reset-color-hover);
+
+              > svg {
+                fill: none;
+              }
+            }
+          }
+
+          .button-previous-month, .button-next-month {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 0.25rem;
+
+            transition: $transition;
+
+            &:hover, &:focus, &:active {
+              background-color: rgba(0, 0, 0, 0.07);
+            }
+          }
+          .button-previous-month {
+            color: var(--litepicker-button-prev-month-color);
+
+            > svg, > img {
+              fill: none;
+            }
+
+            &:hover {
+              color: var(--litepicker-button-prev-month-color-hover);
+
+              > svg {
+                fill: none;
+              }
+            }
+          }
+          .button-next-month {
+            color: var(--litepicker-button-next-month-color);
+
+            > svg, > img {
+              fill: none;
+            }
+
+            &:hover {
+              color: var(--litepicker-button-next-month-color-hover);
+
+              > svg {
+                fill: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &__days {
+      .day-item {
+        &.is-pre, &.is-post {
+          font-weight: 300;
+          color: var(--litepicker-is-locked-color);
+
+          &:hover {
+            color: var(--litepicker-is-locked-color);
+          }
+        }
+      }
+
+    }
+
+    &__today {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .button-show-today {
+        transition: $transition;
+        border-radius: 0.25rem;
+
+        background-color: rgba(0, 0, 0, 0.02);
+        border-width: 0;
+
+        padding: 0.5rem 0.75rem;
+
+        color: var(--litepicker-button-apply-color);
+        font-size: 0.75rem;
+        font-weight: 400;
+
+        * {
+          pointer-events: none;
+        }
+
+        &:focus, &:active, &:hover {
+          background-color: rgba(0, 0, 0, 0.07);
+        }
+
+        &:disabled {
+          opacity: 0.65;
+        }
+      }
+    }
+
+    &__footer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      border-top: 1px solid $border;
+
+      padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+      margin: 0;
+
+      .preview-date-range {
+        flex: 1 1 auto;
+
+        display: block;
+
+        margin: 0;
+
+        font-size: 0.75rem;
+        font-weight: 400;
+
+        text-align: left;
+      }
+
+      .button-cancel, .button-apply {
+        background: transparent;
+        border-radius: 0.25rem;
+        box-shadow: none;
+
+        border-width: 0;
+
+        padding: 0.5rem 0.75rem;
+        margin: 0;
+
+        color: var(--litepicker-button-cancel-color);
+
+        transition: $transition;
+
+        * {
+          pointer-events: none;
+        }
+
+        &:focus, &:active, &:hover {
+          background-color: rgba(0, 0, 0, 0.07);
+          opacity: 1;
+        }
+
+        &:disabled {
+          opacity: 0.65;
+        }
+      }
+
+      .button-apply {
+        background-color: rgba(0, 0, 0, 0.04);
+        margin-left: 0.25rem;
+        color: var(--litepicker-button-apply-color);
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+// ranges.css
+.litepicker[data-plugins*="ranges"] {
+  > .container__main {
+    > .container__predefined-ranges {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+
+      padding: 0.5rem 0;
+
+      button {
+        transition: $transition;
+        @include text-overflow();
+
+        display: block;
+        padding: 0.5rem 0.75rem;
+        max-width: 7.5rem;
+
+        font-size: 0.75rem;
+        font-weight: 500;
+
+        text-align: left;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.05);
+          cursor: pointer;
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &[data-ranges-position="left"] {
+    > .container__main {
+      > .container__predefined-ranges {
+        border-right: 1px solid $border;
+      }
+    }
+  }
+  &[data-ranges-position="right"] {
+    > .container__main {
+      > .container__predefined-ranges {
+        border-left: 1px solid $border;
+      }
+    }
+  }
+}
+// mobilefriendly.css would go here...

@@ -1,0 +1,155 @@
+@import "styles/variables";
+@import "styles/mixins";
+
+.base {
+  flex: 1 1 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: $background-color;
+
+  min-width: 0;
+  min-height: 0;
+
+  position: relative;
+}
+
+.inner {
+  flex: 1 1 auto;
+
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  min-width: 0;
+  min-height: 0;
+
+  width: 100%;
+  // max-width: 101.75rem;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 20;
+
+  display: none;
+
+  background-color: rgba(0, 0, 0, 0.35);
+
+  transition: opacity 0.1s ease-in-out;
+}
+
+.overlayShown {
+  display: block;
+}
+
+.aside {
+  flex: 0 0 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 30;
+
+  background-color: $aside-color;
+  // border-radius: 0 0.75rem 0.75rem 0;
+  border-radius: 0;
+
+  // width: 17.5rem;
+  // width: 13.125rem;
+  width: 16.25rem;
+
+  padding: 0;
+
+  min-width: 0;
+  min-height: 0;
+
+  transition: background-color, border-color, color, opacity, box-shadow, transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+
+  overflow-y: auto;
+
+  box-shadow: inset -1px 0 1px 0px rgba($black, 0.08), 0 2px 4px 0px rgba($black, 0.08);
+
+  transform: translateX(0);
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: -2rem;
+    right: 0;
+    bottom: 0;
+    background: url(../../assets/europe.svg) no-repeat transparent 50% -583.5px;
+    // filter: blur(3px);
+    overflow: hidden;
+    opacity: 0.02;
+    z-index: -1;
+  }
+}
+
+.asideHidden {
+  transition-timing-function: ease-in;
+  transform: translateX(-100%);
+}
+
+.asideShown {
+  // box-shadow: 1px 1px 10px 0px rgba($black, 0.16);
+
+  transition-timing-function: ease-out;
+  transform: translateX(0);
+}
+
+.asideInner {
+  padding: 0 0 3rem 0;
+}
+
+.asideControl {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 10;
+  display: inline-block;
+  padding: 0.75rem 0 0 1rem;
+}
+
+.content {
+  flex: 1 1 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  min-height: 0;
+
+  overflow-y: auto;
+}
+
+.contentInner {
+  padding: 0 0 3rem 0;
+}
+
+@include desktop() {
+  .overlay {
+    display: none;
+  }
+  .aside {
+    transform: translateX(0);
+    position: relative;
+  }
+
+  .asideControl {
+    display: none;
+  }
+}
+

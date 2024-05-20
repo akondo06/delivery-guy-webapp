@@ -1,0 +1,14 @@
+@import "styles/variables";
+
+.base {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 2rem 0;
+}
+
+.inner {
+  width: 96%;
+  max-width: 64rem;
+}

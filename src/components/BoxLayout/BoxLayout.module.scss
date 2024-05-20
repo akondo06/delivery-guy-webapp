@@ -1,0 +1,98 @@
+@import "styles/variables";
+@import "styles/mixins";
+
+.base {
+  flex: 1 1 auto;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: $aside-color;
+
+  min-width: 0;
+  min-height: 0;
+
+  overflow-y: auto;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: -2rem;
+    right: 0;
+    bottom: 0;
+    // background: url(../../assets/full-spread-big.svg) transparent 50% -200px;
+    background: url(../../assets/europe.svg) transparent center 80% no-repeat;
+    background-size: 350% 350%;
+    filter: blur(4px);
+    overflow: hidden;
+    opacity: 0.02;
+    z-index: 0;
+  }
+}
+
+.innerContainer {
+  flex: 0 0 auto;
+
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.inner {
+  flex: 1 1 auto;
+
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 3rem 0;
+}
+
+.logo {
+  margin-bottom: 2.75rem;
+}
+
+.box, .under {
+  display: flex;
+  flex-direction: column;
+
+  padding: 1.25rem;
+
+  width: 90%;
+  max-width: 22.5rem;
+}
+
+.box {
+  // background-color: #ffffff;
+  // // box-shadow: 0 11px 52px rgba($black, 0.08);
+  // // box-shadow: inset 0px -1px 2px 0px rgba($black, 0.08), 0 11px 52px rgba($black, 0.08);
+  // box-shadow: inset 0px -1px 2px 0px rgba($black, 0.08), 0 4px 8px 0 rgba($black, 0.08);
+  // border-radius: 0.5rem;
+
+  background-color: $white;
+  background: linear-gradient(225deg, $white-bis 0%, $white 20%, $white 100%);
+  box-shadow: 0 1px 2px 0 rgba($black, 0.04);
+  border: 1px solid $border;
+  border-radius: 0.75rem;
+}
+
+// .boxSizeBase {
+// }
+
+.boxSizeWide {
+  width: 90%;
+  max-width: 64rem;
+}

@@ -1,0 +1,72 @@
+@import "styles/variables";
+
+.base {
+  color: $text;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover, &:active {
+      color: $black;
+    }
+  }
+}
+
+.alignCenter {
+  text-align: center;
+}
+
+.variantNormal {
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
+.variantSecondary {
+  color: $text-secondary;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+.variantSectionTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
+.variantSectionSubtitle {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.variantTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
+.variantSubtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.75rem;
+}
+
+.variantGroupTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+
+.variantTag {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+
+.variantAttribute {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+

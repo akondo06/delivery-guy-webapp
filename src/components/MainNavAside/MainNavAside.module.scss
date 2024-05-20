@@ -1,0 +1,148 @@
+@import "styles/variables";
+@import "styles/mixins";
+
+.base {
+  flex: 1 1 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+
+  gap: 1rem;
+
+  // background-color: $white;
+
+  // padding: 0 0.5rem;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 3.25rem 0 1rem 0;
+}
+
+.nav {
+  flex: 0 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  gap: 0.5rem;
+
+  padding: 0 1.25rem;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+
+  // padding: 0 0.5rem;
+}
+
+.navLink {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  // justify-content: center;
+  gap: 0.5rem;
+
+  border-radius: 0.75rem;
+
+  padding: 0.5rem;
+
+  color: $text;
+
+  text-decoration: none;
+
+  transition: all 0.2s ease-in-out;
+
+  .navLinkIcon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba($white, 0.64);
+    box-shadow: 0 2px 4px 0 rgba($black, 0.04);
+    border-radius: 0.5rem;
+
+    width: 2rem;
+    height: 2rem;
+
+    font-size: 1.5rem;
+  }
+
+  .navLinkLabel {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  &:hover, &:active, &:focus {
+    // background-color: rgba($white, 0.32);
+    background-color: rgba($black, 0.04);
+    color: $text;
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: rgba($black, 0.08);
+  }
+
+  &.navLinkActive {
+    background-color: rgba($white, 0.32);
+    box-shadow: 0 3px 6px 0 rgba($black, 0.08);
+  }
+}
+
+.account {
+  flex: 0 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  gap: 0.5rem;
+
+  padding: 0 1.25rem;
+}
+
+.accountName {
+  padding: 0 0.75rem 0 0.75rem;
+}
+
+.accountItem {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.accountLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+
+  border-radius: 0.75rem;
+
+  padding: 0.75rem;
+
+  color: $text;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+
+  transition: all 0.2s ease-in-out;
+
+  // &:hover, &:active, &:focus {
+  &:hover {
+    background-color: rgba($black, 0.04);
+    color: $text;
+    text-decoration: none;
+  }
+}

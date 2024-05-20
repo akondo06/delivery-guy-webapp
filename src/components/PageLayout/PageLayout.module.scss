@@ -1,0 +1,146 @@
+@import "styles/variables";
+@import "styles/mixins";
+
+.base {
+  flex: 1 1 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: $background-color;
+  background: linear-gradient(180deg, #f3f3f3 0%, #ffffff 75%, #ffffff 100%);
+
+  min-width: 0;
+  min-height: 0;
+
+  position: relative;
+}
+
+.inner {
+  flex: 1 1 auto;
+
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  min-width: 0;
+  min-height: 0;
+
+  width: 100%;
+  max-width: 101.75rem;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 20;
+
+  display: none;
+
+  background-color: rgba(0, 0, 0, 0.35);
+
+  transition: opacity 0.1s ease-in-out;
+}
+
+.overlayShown {
+  display: block;
+}
+
+.aside {
+  flex: 0 0 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 30;
+
+  background-color: $background-color;
+  background: linear-gradient(180deg, #f3f3f3 0%, #ffffff 75%, #ffffff 100%);
+  // box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
+  // box-shadow: 0 0 25px -15px rgba($black, .35);
+
+  width: 17.5rem;
+
+  padding: 0 0.5rem;
+
+  min-width: 0;
+  min-height: 0;
+
+  transition: background-color, border-color, color, opacity, box-shadow, transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+
+  overflow-y: auto;
+
+  transform: translateX(0);
+}
+
+.asideHidden {
+  transition-timing-function: ease-in;
+  transform: translateX(-100%);
+}
+
+.asideShown {
+  box-shadow: 1px 1px 10px 0px rgba($black, 0.16);
+
+  transition-timing-function: ease-out;
+  transform: translateX(0);
+}
+
+.asideInner {
+  padding: 2rem 0 3rem;
+}
+
+.asideControl {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 10;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.content {
+  flex: 1 1 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  min-height: 0;
+
+  overflow-y: auto;
+}
+
+.contentInner {
+  padding: 1rem 1rem 3rem 1rem;
+}
+
+@include widescreen() {
+  .overlay {
+    display: none;
+  }
+  .aside {
+    transform: translateX(0);
+    position: relative;
+
+    background: transparent;
+    // box-shadow: none;
+
+    padding: 0 0.5rem 0 0;
+  }
+
+  .asideControl {
+    display: none;
+  }
+
+  .contentInner {
+    padding: 2rem 1rem 3rem 1rem;
+  }
+}

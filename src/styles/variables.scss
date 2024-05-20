@@ -1,0 +1,71 @@
+$black:        hsl(0, 0%, 4%) !default;
+$black-bis:    hsl(0, 0%, 7%) !default;
+$black-ter:    hsl(0, 0%, 14%) !default;
+
+$gray-darker:  hsl(0, 0%, 21%) !default;
+$gray-dark:    hsl(0, 0%, 29%) !default;
+$gray:         hsl(0, 0%, 48%) !default;
+$gray-light:   hsl(0, 0%, 71%) !default;
+$gray-lighter: hsl(0, 0%, 86%) !default;
+$gray-lightest: hsl(0, 0%, 93%) !default;
+
+$white-ter:    hsl(0, 0%, 96%) !default;
+$white-bis:    hsl(0, 0%, 98%) !default;
+$white:        hsl(0, 0%, 100%) !default;
+
+$orange:       hsl(14,  100%, 53%) !default;
+$yellow:       hsl(44,  100%, 77%) !default;
+$green:        hsl(153, 53%,  53%) !default;
+$turquoise:    hsl(171, 100%, 41%) !default;
+$cyan:         hsl(207, 61%,  53%) !default;
+$blue:         hsl(229, 53%,  53%) !default;
+$purple:       hsl(271, 100%, 71%) !default;
+$red:          hsl(348, 86%, 61%) !default;
+
+// $weight-light: 300 !default;
+// $weight-normal: 400 !default;
+// $weight-medium: 500 !default;
+// $weight-semibold: 600 !default;
+// $weight-bold: 700 !default;
+
+
+$gap: 32px !default;
+
+// 480, 960, 1152, and 1344 have been chosen because they are divisible by both 12 and 16
+$mobile: 480px !default;
+// 528
+// 576
+$tablet: 769px !default;
+$desktop: 960px + (2 * $gap) !default;
+$widescreen: 1152px + (2 * $gap) !default;
+$fullhd: 1344px + (2 * $gap) !default;
+
+
+
+// $primary: $turquoise !default;
+// $primary: #109688;
+// $primary-hover: #0F887B;
+$primary: $black-ter;
+// $primary-hover: $black-bis;
+
+$border: #E7E4E4;
+
+$info: $cyan !default;
+$success: $green !default;
+$warning: $yellow !default;
+$danger: $red !default;
+
+
+$text: #232C3B;
+$text-secondary: #9E9E9E;
+
+// $background-color: #C6C6C6;
+// $background-color: #CCE3DA; // n26 one...
+// $background-color: $white-ter;
+$background-color: $white;
+
+$navbar-height: 3.5rem;
+
+// $aside-color: #F4F1EB;
+// $aside-color: #DEDEDE;
+$aside-color: #E5E5E5;

@@ -1,0 +1,92 @@
+@import "styles/variables";
+@import "styles/mixins";
+
+.fieldsNames {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0;
+
+  @include mobile() {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+.fieldsPostalCodeCity {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 0;
+
+  @include mobile() {
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+  }
+}
+
+.properties, .propertyUnitMeters {
+  display: grid;
+  grid-template-columns: minmax(1px, 1fr);
+  gap: 1rem;
+
+  @include tablet() {
+    grid-template-columns: repeat(2, minmax(1px, 1fr));
+  }
+
+  @include desktop() {
+    grid-template-columns: repeat(3, minmax(1px, 1fr));
+  }
+}
+
+.propertyStats {
+  display: grid;
+  grid-template-columns: minmax(1px, 1fr);
+  gap: 1rem;
+
+  @include tablet() {
+    grid-template-columns: repeat(2, minmax(1px, 1fr));
+  }
+}
+
+.propertyUnitFloor {
+  display: grid;
+  grid-template-columns: minmax(1px, 1fr);
+  gap: 1rem;
+
+  @include tablet() {
+    grid-template-columns: repeat(2, minmax(1px, 1fr));
+  }
+}
+
+.propertyContacts {
+  display: grid;
+  grid-template-columns: minmax(1px, 1fr);
+  gap: 1rem;
+
+  @include tablet() {
+    grid-template-columns: repeat(2, minmax(1px, 1fr));
+  }
+}
+
+.vertical {
+  display: grid;
+  grid-template-columns: minmax(1px, 1fr);
+  gap: 1rem;
+
+  // @include tablet() {
+  //   grid-template-columns: repeat(2, minmax(1px, 1fr));
+  // }
+
+  // @include desktop() {
+  //   grid-template-columns: repeat(3, minmax(1px, 1fr));
+  // }
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: minmax(1px, 1fr);
+  gap: 1rem;
+
+  @include tablet() {
+    grid-template-columns: repeat(2, minmax(1px, 1fr));
+  }
+}

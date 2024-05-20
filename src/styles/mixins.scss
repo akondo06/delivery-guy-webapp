@@ -1,0 +1,63 @@
+@import "variables";
+
+
+@mixin mobile() {
+	@media screen and (min-width: $mobile), print {
+		@content;
+	}
+}
+
+@mixin tablet() {
+	@media screen and (min-width: $tablet), print {
+		@content;
+	}
+}
+
+@mixin desktop() {
+	@media screen and (min-width: $desktop) {
+		@content;
+	}
+}
+
+@mixin widescreen() {
+	@media screen and (min-width: $widescreen) {
+		@content;
+	}
+}
+
+@mixin fullhd() {
+	@media screen and (min-width: $fullhd) {
+		@content;
+	}
+}
+
+@mixin loader($size: 1rem, $thickness: 2px, $color: $gray-lighter) {
+  content: "";
+  display: block;
+
+  position: relative;
+
+  width: $size;
+  height: $size;
+
+  border: $thickness solid $color;
+  border-radius: 9999px;
+  border-right-color: transparent;
+  border-top-color: transparent;
+
+  animation: spinAround 500ms infinite linear;
+}
+
+@mixin overlay($offset: 0) {
+  bottom: $offset;
+  left: $offset;
+  position: absolute;
+  right: $offset;
+  top: $offset;
+}
+
+@mixin text-overflow($space: nowrap, $txt-overflow: ellipsis, $overflow: hidden) {
+	white-space: $space;
+	text-overflow: $txt-overflow;
+	overflow: $overflow;
+}
