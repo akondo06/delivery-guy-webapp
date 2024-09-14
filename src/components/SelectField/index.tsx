@@ -176,12 +176,12 @@ export default function SelectField(props: Props) {
               '&:focus': {
                 outline: 0,
                 boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)',
-                borderColor: '#109688'
+                borderColor: '#242424'
               },
               '&:focus-within': {
                 outline: 0,
                 boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)',
-                borderColor: '#109688'
+                borderColor: '#242424'
               }
             }),
             singleValue: (base) => ({
